@@ -411,7 +411,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 150, y: 1, z: 150}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &194363700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1184,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 150, y: 1, z: 150}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,7 +2042,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 3497612054172579930, guid: b37eddf275cae0344883f5e46f46c474, type: 3}
   spawnAreaSize: {x: 20, y: 0, z: 10}
-  enemyContainer: {fileID: 0}
+  enemyContainer: {fileID: 1876710572}
 --- !u!1 &459501985 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 944265e777a2ab24bb6bce5257fad36d,
@@ -2130,7 +2130,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 150, y: 1, z: 150}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &470854074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,7 +2319,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 150, y: 1, z: 150}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &486128871
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,13 +3602,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.68
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.59, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!4 &880660561
 Transform:
   m_ObjectHideFlags: 0
@@ -3641,7 +3641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 5
-  <Animator>k__BackingField: {fileID: 0}
+  <RotationDamping>k__BackingField: 5
+  <CharacterController>k__BackingField: {fileID: 880660560}
+  <Animator>k__BackingField: {fileID: 459501987}
 --- !u!1 &935311673
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,7 +5666,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 150, y: 1, z: 150}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!1 &1703140620
 GameObject:
   m_ObjectHideFlags: 0
