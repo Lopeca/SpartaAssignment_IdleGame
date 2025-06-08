@@ -7,12 +7,19 @@ public class Player : MonoBehaviour
 {
     [field:SerializeField] public float MoveSpeed { get; private set; }
 
-    public Animator animator;
+    [field:SerializeField] public Animator Animator {get; private set;}
     private PlayerFSM _playerFSM;
 
     private void Awake()
     {
         _playerFSM = new PlayerFSM(this);
-        animator = GetComponentInChildren<Animator>();
+        Animator = GetComponentInChildren<Animator>();
+
+        _playerFSM.ChangeState(_playerFSM.playerIdleState);
+    }
+
+    private void Update()
+    {
+        _playerFSM.UpdateMachine();
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class AnimationStringData
 {
-    public static int IsAttack = Animator.StringToHash("IsAttack");
-    public static int IsDie = Animator.StringToHash("IsDie");
+    public static readonly int IsIdle = Animator.StringToHash("IsIdle");
+    public static readonly int IsMove = Animator.StringToHash("IsMove");
+    public static readonly int IsAttack = Animator.StringToHash("IsAttack");
+    public static readonly int IsDie = Animator.StringToHash("IsDie");
 }

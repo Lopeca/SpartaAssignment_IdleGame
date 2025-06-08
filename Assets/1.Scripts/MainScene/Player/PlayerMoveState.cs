@@ -11,15 +11,17 @@ public class PlayerMoveState : PlayerState
     public override void Enter()
     {
         // 애니메이션 상태 변화
+        player.Animator.SetBool(AnimationStringData.IsMove, true);
+        
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        player.Animator.SetBool(AnimationStringData.IsMove, true);
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        
     }
 }
