@@ -12,7 +12,7 @@ public class PlayerMoveState : PlayerState
     {
         // 애니메이션 상태 변화
         player.Animator.SetBool(AnimationStringData.IsMove, true);
-        
+
     }
 
     public override void Exit()
@@ -22,6 +22,7 @@ public class PlayerMoveState : PlayerState
 
     public override void Update()
     {
+        player.CharacterController.Move(new Vector3(0,0,player.MoveSpeed) * Time.deltaTime);
         
     }
 }

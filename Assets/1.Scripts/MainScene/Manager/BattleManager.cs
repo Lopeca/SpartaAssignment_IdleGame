@@ -19,12 +19,16 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private Player player;
+    public Player player;
     private Vector3 playerInitPos;
     [SerializeField] TerrainLooper terrainLooper;
-        
+    [SerializeField] private EnemySpawner enemySpawner;
+    Coroutine waveCoroutine;
+    
     public const int MaxWaveCount = 5;
+    private const float waveTerm = 2.5f;
     public int CurrentWaveCount { get; private set; }
+    public int remainedEnemies;
 
     private void Awake()
     {
@@ -47,6 +51,12 @@ public class BattleManager : MonoBehaviour
             player = FindObjectOfType<Player>();
             if(!player) Debug.LogError("No player found");
         }
+        if (!enemySpawner)
+        {
+            enemySpawner = FindObjectOfType<EnemySpawner>();
+            if(!enemySpawner) Debug.LogError("No player found");
+        }
+        
         playerInitPos = player.transform.position;
 
         InitBattle();
@@ -57,5 +67,21 @@ public class BattleManager : MonoBehaviour
         CurrentWaveCount = 1;
         terrainLooper.InitializeTerrain();
         player.transform.position = playerInitPos;
+        remainedEnemies = 0;
+        enemySpawner.EmptyContainer();
+        if(waveCoroutine != null) StopCoroutine(waveCoroutine);
+
+        NextWave();
+    }
+
+    private void NextWave()
+    {
+        waveCoroutine = StartCoroutine(SpawnNextWave());
+    }
+
+    IEnumerator SpawnNextWave()
+    {
+        yield return new WaitForSeconds(waveTerm);
+        enemySpawner.Spawn(2);
     }
 }
