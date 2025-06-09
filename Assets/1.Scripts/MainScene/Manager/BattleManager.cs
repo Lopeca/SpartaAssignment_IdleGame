@@ -29,7 +29,7 @@ public class BattleManager : MonoBehaviour
     private const float waveTerm = 2.5f;
     public int CurrentWaveCount { get; private set; }
     public int remainedEnemies;
-
+    
     private void Awake()
     {
         if (!_instance)
@@ -67,6 +67,7 @@ public class BattleManager : MonoBehaviour
         CurrentWaveCount = 1;
         terrainLooper.InitializeTerrain();
         player.transform.position = playerInitPos;
+        player.Init();
         remainedEnemies = 0;
         enemySpawner.EmptyContainer();
         if(waveCoroutine != null) StopCoroutine(waveCoroutine);
@@ -84,7 +85,20 @@ public class BattleManager : MonoBehaviour
         else
         {
             // 배틀 끝 연출
+            StartCoroutine(Loop());
         }
+    }
+
+    IEnumerator Loop()
+    {
+        yield return new WaitForSeconds(2f);
+        MainSceneUIManager.Instance.BattleFadeOut();
+        yield return new WaitUntil(() => MainSceneUIManager.Instance.fadeComplete);
+        
+        InitBattle();
+        MainSceneUIManager.Instance.BattleFadeIn();
+        yield return new WaitUntil(() => MainSceneUIManager.Instance.fadeComplete);
+        
     }
 
     IEnumerator SpawnNextWave()

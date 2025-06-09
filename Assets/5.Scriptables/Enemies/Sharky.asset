@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <HP>k__BackingField: 150
   <ATK>k__BackingField: 15
+  <AttackSpeed>k__BackingField: 1
   <MoveSpeed>k__BackingField: 5
-  <Range>k__BackingField: 15
+  <Range>k__BackingField: 12
+  <Deal_Start_Time>k__BackingField: 0.4166667

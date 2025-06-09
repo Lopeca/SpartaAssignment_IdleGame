@@ -38,9 +38,12 @@ public class Player : MonoBehaviour
 
     public void Init()
     {
+        statHandler.Init();
+        
         IsDead = false;
         target = null;
-        _playerFSM.ChangeState(_playerFSM.playerIdleState);
+        
+        _playerFSM.ChangeState(_playerFSM.playerMoveState);
     }
 
     private void Update()
@@ -65,4 +68,5 @@ public class Player : MonoBehaviour
         enabled = false;
         _playerFSM.StopMachine();
     }
+    
 }

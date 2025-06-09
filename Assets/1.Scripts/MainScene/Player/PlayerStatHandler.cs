@@ -15,9 +15,14 @@ public class PlayerStatHandler : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         CurrentHP = MaxHP;
     }
-    
+
     public void ChangeHP(float delta)
     {
         CurrentHP += delta;
