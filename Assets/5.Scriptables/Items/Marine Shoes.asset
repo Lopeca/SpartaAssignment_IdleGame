@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d105269906997ac468e9d17d98be238c, type: 3}
   m_Name: Marine Shoes
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  name: Marine Shoes
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   stats:
   - statType: 0
     value: 100

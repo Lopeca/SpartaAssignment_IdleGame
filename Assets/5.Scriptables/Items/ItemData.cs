@@ -28,10 +28,12 @@ public class Stat
 [CreateAssetMenu(fileName = "Item Data", menuName = "Scriptable/Item")]
 public class ItemData : ScriptableObject
 {
+    [SerializeField] private string name;
     [SerializeField] private Sprite icon;
     [SerializeField] private List<Stat> stats;
     [SerializeField] private int cost;
 
+    public string Name => name;
     public Sprite Icon => icon;
     public List<Stat> Stats => stats;
     public int Cost => cost;

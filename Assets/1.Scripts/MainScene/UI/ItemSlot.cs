@@ -13,6 +13,8 @@ public class ItemSlot : MonoBehaviour
     
     public int Id => id;
     public Item Item => item;
+    public bool IsEmpty => item == null || !item.itemData;
+
     private void Awake()
     {
         icon.gameObject.SetActive(false);

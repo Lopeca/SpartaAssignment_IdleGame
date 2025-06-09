@@ -8,11 +8,13 @@ public class ItemInfoPanel : MonoBehaviour
 {
     [SerializeField] private Item item;
     [SerializeField] private Image icon;
+    [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI statInfo;
     [SerializeField] private TextMeshProUGUI upgradeCost;
     public void SetInfo(ItemSlot itemSlot)
     {
         item = itemSlot.Item;
+        itemName.text = item.itemData.Name;
 
         UpdateInfo();
         

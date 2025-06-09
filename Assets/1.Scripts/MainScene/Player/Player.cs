@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
 
     public void ObtainItem()
     {
-        throw new NotImplementedException();
+        Item item = ItemDataConnector.Instance.GetRandomItem();
+        playerInventory.AddItem(item);
     }
 }

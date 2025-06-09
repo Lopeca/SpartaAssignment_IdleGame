@@ -25,4 +25,18 @@ public class PlayerInventory : MonoBehaviour
     {
         itemSlots[i] = slot;
     }
+
+    public void AddItem(Item item)
+    {
+        Debug.Log(item.GetItemInfoString());
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            Debug.Log($"i : {i} || {itemSlots[i].IsEmpty}");
+            if (itemSlots[i].IsEmpty)
+            {
+                itemSlots[i].SetItem(item);
+                return;
+            }
+        }
+    }
 }
