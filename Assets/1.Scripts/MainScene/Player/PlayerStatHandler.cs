@@ -7,12 +7,18 @@ public class PlayerStatHandler : MonoBehaviour
 {
     [field: SerializeField] public float MaxHP { get; private set; } = 100;
     [field: SerializeField] public float ATK { get; private set; } = 15;
+    [field: SerializeField] public float DEF { get; private set; } = 0;
+    
     [field:SerializeField] public float AttackSpeed { get; private set; }
     [field:SerializeField] public float Range { get; private set; }
     [field:SerializeField] public float Deal_Start_Time { get; private set; }
 
     [field: SerializeField] public float CurrentHP { get; private set; }
-
+    [field: SerializeField] public int CurrentLevel { get; private set; }
+    
+    [field: SerializeField] public int CurrentEXP { get; private set; }
+    public int MaxEXP => (int)(Mathf.Pow(CurrentLevel, 1.5f) * 50);
+    
     private void Awake()
     {
         Init();
@@ -21,11 +27,25 @@ public class PlayerStatHandler : MonoBehaviour
     public void Init()
     {
         CurrentHP = MaxHP;
+        MainSceneUIManager.Instance?.battlePanel.UpdateHP(CurrentHP, MaxHP);
+        
     }
 
     public void ChangeHP(float delta)
     {
         CurrentHP += delta;
         CurrentHP = Mathf.Clamp(CurrentHP, 0f, MaxHP);
+        MainSceneUIManager.Instance?.battlePanel.UpdateHP(CurrentHP, MaxHP);
+    }
+
+    public void GainEXP(int exp)
+    {
+        CurrentEXP += exp;
+        if (CurrentEXP > MaxEXP)
+        {
+            CurrentEXP -= MaxEXP;
+            
+            CurrentLevel++;
+        }
     }
 }

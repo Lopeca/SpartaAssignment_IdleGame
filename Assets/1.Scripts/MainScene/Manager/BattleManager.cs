@@ -64,20 +64,22 @@ public class BattleManager : MonoBehaviour
 
     public void InitBattle()
     {
-        CurrentWaveCount = 1;
+        CurrentWaveCount = 0;
         terrainLooper.InitializeTerrain();
         player.transform.position = playerInitPos;
         player.Init();
         remainedEnemies = 0;
         enemySpawner.EmptyContainer();
         if(waveCoroutine != null) StopCoroutine(waveCoroutine);
+        MainSceneUIManager.Instance.battlePanel.waveIndicator.Init();
 
         NextWave();
     }
 
     private void NextWave()
     {
-        if (CurrentWaveCount <= MaxWaveCount)
+        
+        if (CurrentWaveCount < MaxWaveCount)
         {
             CurrentWaveCount++;
             waveCoroutine = StartCoroutine(SpawnNextWave());
@@ -91,13 +93,17 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator Loop()
     {
+        BattlePanel battlePanel = MainSceneUIManager.Instance.battlePanel;
+        
         yield return new WaitForSeconds(2f);
-        MainSceneUIManager.Instance.BattleFadeOut();
-        yield return new WaitUntil(() => MainSceneUIManager.Instance.fadeComplete);
+        
+        battlePanel.BattleFadeOut();
+        yield return new WaitUntil(() => battlePanel.fadeComplete);
         
         InitBattle();
-        MainSceneUIManager.Instance.BattleFadeIn();
-        yield return new WaitUntil(() => MainSceneUIManager.Instance.fadeComplete);
+        
+        battlePanel.BattleFadeIn();
+        yield return new WaitUntil(() => battlePanel.fadeComplete);
         
     }
 
@@ -110,6 +116,10 @@ public class BattleManager : MonoBehaviour
     public void EnemyKilled()
     {
         remainedEnemies--;
-        if(remainedEnemies == 0) NextWave();
+        if (remainedEnemies == 0)
+        {
+            MainSceneUIManager.Instance.battlePanel.waveIndicator.LitIndicator(CurrentWaveCount-1);
+            NextWave();
+        }
     }
 }

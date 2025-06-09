@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
         IsDead = true;
         enabled = false;
         CharacterController.enabled = false;
-        BattleManager.Instance.player.target = null;
+
         _enemyFSM.StopMachine();
 
         StartCoroutine(CleanUpCorpse());

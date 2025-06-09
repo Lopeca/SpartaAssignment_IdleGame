@@ -46,6 +46,14 @@ public class PlayerAttackState : PlayerState
             player.target.TakeDamage(player.statHandler.ATK);
             yield return new WaitForSeconds((1 - player.statHandler.Deal_Start_Time) / player.statHandler.AttackSpeed);
             attackApplied = true;
+            
+            // 타겟이 죽음으로 인해서 
+            if (player.target.IsDead)
+            {
+                player.GainGold(player.target.enemyData.Gold);
+                player.GainExp(player.target.enemyData.EXP);
+                player.target = null;
+            }
         }
     }
 }

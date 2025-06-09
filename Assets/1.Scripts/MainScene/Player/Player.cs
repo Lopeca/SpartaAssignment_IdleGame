@@ -12,15 +12,27 @@ public class Player : MonoBehaviour
     [field:SerializeField] public Animator Animator {get; private set;}
     private PlayerFSM _playerFSM;
     public PlayerStatHandler statHandler;
+    public PlayerInventory playerInventory;
     
     [field:SerializeField] public LayerMask enemyMask {get; private set;}
     public Enemy target;
     
+    MainTab sideMainTabUI;
     public bool IsDead {get; private set;}
     private void Awake()
     {
         _playerFSM = new PlayerFSM(this);
         
+        CheckComponents();
+    }
+
+    private void Start()
+    {
+        Init();
+    }
+
+    private void CheckComponents()
+    {
         if(!CharacterController)
             CharacterController = GetComponent<CharacterController>();
         
@@ -32,8 +44,12 @@ public class Player : MonoBehaviour
         {
             statHandler = gameObject.AddComponent<PlayerStatHandler>();
         }
-
-        Init();
+        
+        playerInventory = GetComponent<PlayerInventory>();
+        if (!playerInventory)
+        {
+            playerInventory = gameObject.AddComponent<PlayerInventory>();
+        }
     }
 
     public void Init()
@@ -42,6 +58,13 @@ public class Player : MonoBehaviour
         
         IsDead = false;
         target = null;
+
+        sideMainTabUI = MainSceneUIManager.Instance.sidePanel.mainTab;
+        sideMainTabUI.UpdateGoldText(playerInventory.Gold);
+        sideMainTabUI.UpdateLevelText(statHandler.CurrentLevel);
+        sideMainTabUI.UpdateExp(statHandler.CurrentEXP, statHandler.MaxEXP);
+        sideMainTabUI.UpdateStatText(statHandler.ATK, statHandler.DEF);
+        
         
         _playerFSM.ChangeState(_playerFSM.playerMoveState);
     }
@@ -59,6 +82,19 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void GainGold(int amount)
+    {
+        playerInventory.AddGold(amount);
+        sideMainTabUI.UpdateGoldText(playerInventory.Gold);
+    }
+
+    public void GainExp(int amount)
+    {
+        statHandler.GainEXP(amount);
+        sideMainTabUI.UpdateExp(statHandler.CurrentEXP, statHandler.MaxEXP);
+        sideMainTabUI.UpdateLevelText(statHandler.CurrentLevel);
     }
 
     private void Die()
