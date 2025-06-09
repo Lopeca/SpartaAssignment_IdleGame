@@ -23,4 +23,8 @@ public abstract class StateMachine
     {
         currentState?.Update();
     }
+
+    public virtual void StopMachine()
+    {
+    }
 }

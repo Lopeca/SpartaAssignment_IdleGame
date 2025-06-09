@@ -20,11 +20,15 @@ public class EnemyIdleState : EnemyState
 
     public override void Update()
     {
+        if (enemy.target.IsDead) return;
+        
         if (!enemy.TargetIsInRange())
         {
             fsm.ChangeState(fsm.enemyMoveState);
         }
-        
-        // Debug.Log(enemy.TargetIsInRange());
+        else
+        {
+            fsm.ChangeState(fsm.enemyAttackState);
+        }
     }
 }

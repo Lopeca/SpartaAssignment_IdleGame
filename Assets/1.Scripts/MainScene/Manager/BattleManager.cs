@@ -76,12 +76,26 @@ public class BattleManager : MonoBehaviour
 
     private void NextWave()
     {
-        waveCoroutine = StartCoroutine(SpawnNextWave());
+        if (CurrentWaveCount <= MaxWaveCount)
+        {
+            CurrentWaveCount++;
+            waveCoroutine = StartCoroutine(SpawnNextWave());
+        }
+        else
+        {
+            // 배틀 끝 연출
+        }
     }
 
     IEnumerator SpawnNextWave()
     {
         yield return new WaitForSeconds(waveTerm);
         enemySpawner.Spawn(2);
+    }
+
+    public void EnemyKilled()
+    {
+        remainedEnemies--;
+        if(remainedEnemies == 0) NextWave();
     }
 }

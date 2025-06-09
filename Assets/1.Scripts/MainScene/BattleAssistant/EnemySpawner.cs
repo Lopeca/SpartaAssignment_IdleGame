@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
             
             Vector3 spawnPos = transform.position - new Vector3(spawnAreaSize.x/2, 0, 0) + offset;
             Enemy enemy = Instantiate(enemies.GetRandom(), spawnPos, Quaternion.Euler(0,180,0), enemyContainer.transform).GetComponent<Enemy>();
-            enemy.target = BattleManager.Instance.player.gameObject;
+            enemy.target = BattleManager.Instance.player;
         }
         BattleManager.Instance.remainedEnemies += count; 
     }

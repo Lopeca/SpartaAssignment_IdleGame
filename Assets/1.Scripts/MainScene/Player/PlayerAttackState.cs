@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerAttackState : PlayerState
 {
+    
+    private bool attackApplied;
+    
     public PlayerAttackState(Player _player, PlayerFSM _fsm) : base(_player, _fsm)
     {
     }
@@ -11,16 +14,38 @@ public class PlayerAttackState : PlayerState
     // Update is called once per frame
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        attackApplied = false;
+        player.Animator.SetBool(AnimationStringData.IsAttack, true);
+
+        fsm.attackCoroutine = player.StartCoroutine(Attack());
+        player.Animator.speed = player.statHandler.AttackSpeed;
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        player.Animator.SetBool(AnimationStringData.IsAttack, false);
+        if(fsm.attackCoroutine != null) player.StopCoroutine(fsm.attackCoroutine);
+        player.Animator.speed = 1;
+        
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        if (attackApplied)
+        {
+            fsm.ChangeState(fsm.playerIdleState);
+        }
+        
+    }
+
+    IEnumerator Attack()
+    {
+        while (player.target)
+        {
+            yield return new WaitForSeconds(player.statHandler.Deal_Start_Time / player.statHandler.AttackSpeed);
+            player.target.TakeDamage(player.statHandler.ATK);
+            yield return new WaitForSeconds((1 - player.statHandler.Deal_Start_Time) / player.statHandler.AttackSpeed);
+            attackApplied = true;
+        }
     }
 }

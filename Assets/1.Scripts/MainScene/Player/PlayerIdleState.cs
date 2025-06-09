@@ -20,7 +20,11 @@ public class PlayerIdleState : PlayerState
 
     public override void Update()
     {
-        // 스테이지 클리어도 아니고 전투 중도 아니면
-        fsm.ChangeState(fsm.playerMoveState);
+        if(!player.target)
+            fsm.ChangeState(fsm.playerMoveState);
+        else 
+        {
+            fsm.ChangeState(fsm.playerAttackState);
+        }
     }
 }

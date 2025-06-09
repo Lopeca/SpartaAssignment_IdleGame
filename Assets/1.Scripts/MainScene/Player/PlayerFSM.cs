@@ -9,6 +9,8 @@ public class PlayerFSM : StateMachine
     public PlayerIdleState playerIdleState;
     public PlayerMoveState playerMoveState;
     public PlayerAttackState playerAttackState;
+    
+    public Coroutine attackCoroutine;
     public PlayerFSM(Player _player)
     {
         player = _player;
@@ -16,5 +18,10 @@ public class PlayerFSM : StateMachine
         playerIdleState = new PlayerIdleState(player, this);
         playerMoveState = new PlayerMoveState(player, this);
         playerAttackState = new PlayerAttackState(player, this);
+    }
+
+    public override void StopMachine()
+    {
+        if (attackCoroutine != null) player.StopCoroutine(attackCoroutine);
     }
 }
