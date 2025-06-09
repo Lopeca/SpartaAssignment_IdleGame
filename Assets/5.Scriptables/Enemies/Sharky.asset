@@ -16,7 +16,7 @@ MonoBehaviour:
   atk: 30
   attackSpeed: 1
   moveSpeed: 7
-  range: 12
+  range: 8
   dealStartTime: 0.3
   gold: 30
   exp: 15

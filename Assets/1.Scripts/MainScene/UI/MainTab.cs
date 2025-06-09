@@ -13,7 +13,27 @@ public class MainTab : MonoBehaviour
     [SerializeField] private TextMeshProUGUI defText;
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private Slider expBar;
+
+    [SerializeField] private GameObject itemSlotPrefab;
+    [SerializeField] private GameObject itemSlotContainer;
+
+    public const int MaxSlotCount = 15;
     
+    private void Start()
+    {
+        foreach (Transform child in itemSlotContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < MaxSlotCount; i++)
+        {
+            ItemSlot slot = Instantiate(itemSlotPrefab, itemSlotContainer.transform).GetComponent<ItemSlot>();
+            slot.SetId(i);
+            BattleManager.Instance.player.playerInventory.AppendSlot(slot, i);
+        }
+    }
+
     public void UpdateGoldText(int gold)
     {
         goldText.text = $"{gold} G";

@@ -41,11 +41,23 @@ public class PlayerStatHandler : MonoBehaviour
     public void GainEXP(int exp)
     {
         CurrentEXP += exp;
-        if (CurrentEXP > MaxEXP)
+        if (CurrentEXP >= MaxEXP)
         {
             CurrentEXP -= MaxEXP;
-            
-            CurrentLevel++;
+
+            LevelUp();
         }
+    }
+
+    private void LevelUp()
+    {
+        CurrentLevel++;
+        MaxHP += 70;
+        CurrentHP += 100;
+        ATK += 10;
+        DEF += 5;
+        
+        MainSceneUIManager.Instance?.battlePanel.UpdateHP(CurrentHP, MaxHP);
+        MainSceneUIManager.Instance?.sidePanel.mainTab.UpdateStatText(ATK, DEF);
     }
 }

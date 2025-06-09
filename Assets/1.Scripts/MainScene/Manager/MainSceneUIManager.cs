@@ -11,7 +11,7 @@ public class MainSceneUIManager : MonoBehaviour
 
     public BattlePanel battlePanel;
     public SidePanel sidePanel;
-    
+    public ItemInfoPanel itemInfoPanel;
     
 
     private void Awake()
@@ -24,5 +24,13 @@ public class MainSceneUIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        itemInfoPanel.gameObject.SetActive(false);
+    }
+
+    public void ShowItemInfo(ItemSlot itemSlot)
+    {
+        itemInfoPanel.SetInfo(itemSlot);
+        itemInfoPanel.gameObject.SetActive(true);
     }
 }

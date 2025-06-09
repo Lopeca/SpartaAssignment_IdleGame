@@ -17,16 +17,10 @@ public class DebugEditorWindow : EditorWindow
         {
             InitBattle();
         }
-
-
-        if (GUILayout.Button("적 생성 테스트"))
+        
+        if (GUILayout.Button("아이템 랜덤 획득"))
         {
-            SpawnEnemy();
-        }
-
-        if (GUILayout.Button("플레이어 위치 초기화"))
-        {
-            ResetPlayerPosition();
+            AddRandomItem();
         }
     }
 
@@ -34,19 +28,9 @@ public class DebugEditorWindow : EditorWindow
     {
         BattleManager.Instance.InitBattle();
     }
-    void SpawnEnemy()
-    {
-        Debug.Log("에디터에서 적 생성 실행");
-        // 에디터 내에서만 가능한 작업 or Scene에 영향 주는 코드 작성 가능
-    }
 
-    void ResetPlayerPosition()
+    void AddRandomItem()
     {
-        var player = GameObject.FindWithTag("Player");
-        if (player)
-        {
-            player.transform.position = Vector3.zero;
-            Debug.Log("플레이어 위치 초기화 완료");
-        }
+        BattleManager.Instance.player.ObtainItem();
     }
 }

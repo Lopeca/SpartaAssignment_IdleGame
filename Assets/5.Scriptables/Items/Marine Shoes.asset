@@ -16,3 +16,5 @@ MonoBehaviour:
   stats:
   - statType: 0
     value: 100
+    upgradeValue: 30
+  cost: 100

@@ -86,9 +86,13 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            // 배틀 끝 연출
-            StartCoroutine(Loop());
+            Restart();
         }
+    }
+
+    public void Restart()
+    {
+        StartCoroutine(Loop());
     }
 
     IEnumerator Loop()

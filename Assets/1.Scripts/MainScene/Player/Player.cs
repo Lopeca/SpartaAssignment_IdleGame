@@ -76,7 +76,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        statHandler.ChangeHP(-damage);
+        float actualDamage = Mathf.Max(1, damage - statHandler.DEF);
+        statHandler.ChangeHP(-actualDamage);
 
         if (statHandler.CurrentHP <= 0)
         {
@@ -103,6 +104,11 @@ public class Player : MonoBehaviour
         Animator.SetTrigger(AnimationStringData.IsDie);
         enabled = false;
         _playerFSM.StopMachine();
+        BattleManager.Instance.Restart();
     }
-    
+
+    public void ObtainItem()
+    {
+        throw new NotImplementedException();
+    }
 }
