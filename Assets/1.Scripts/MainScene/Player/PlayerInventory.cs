@@ -39,4 +39,10 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+
+    public void RemoveItem(ItemSlot slot)
+    {
+        slot.EmptySlot();
+        BattleManager.Instance.player.statHandler.CalculateItemStat();
+    }
 }

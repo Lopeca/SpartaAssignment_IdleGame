@@ -18,7 +18,7 @@ public class PlayerAttackState : PlayerState
         player.Animator.SetBool(AnimationStringData.IsAttack, true);
 
         fsm.attackCoroutine = player.StartCoroutine(Attack());
-        player.Animator.speed = player.statHandler.AttackSpeed;
+        player.Animator.speed = player.statHandler.TotalAttackSpeed;
     }
 
     public override void Exit()
@@ -42,9 +42,9 @@ public class PlayerAttackState : PlayerState
     {
         while (player.target)
         {
-            yield return new WaitForSeconds(player.statHandler.Deal_Start_Time / player.statHandler.AttackSpeed);
-            player.target.TakeDamage(player.statHandler.ATK);
-            yield return new WaitForSeconds((1 - player.statHandler.Deal_Start_Time) / player.statHandler.AttackSpeed);
+            yield return new WaitForSeconds(player.statHandler.Deal_Start_Time / player.statHandler.TotalAttackSpeed);
+            player.target.TakeDamage(player.statHandler.TotalATK);
+            yield return new WaitForSeconds((1 - player.statHandler.Deal_Start_Time) / player.statHandler.TotalAttackSpeed);
             attackApplied = true;
             
             // 타겟이 죽음으로 인해서 

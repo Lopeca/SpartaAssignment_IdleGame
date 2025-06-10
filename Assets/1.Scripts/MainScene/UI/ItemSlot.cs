@@ -10,6 +10,7 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] Item item;
     [SerializeField] Image icon;
     [SerializeField] private Button button;
+    [SerializeField] private GameObject equipMark;
     
     public int Id => id;
     public Item Item => item;
@@ -19,6 +20,7 @@ public class ItemSlot : MonoBehaviour
     {
         icon.gameObject.SetActive(false);
         button = GetComponent<Button>();
+        equipMark.SetActive(false);
     }
 
     private void Start()
@@ -39,11 +41,20 @@ public class ItemSlot : MonoBehaviour
         button.interactable = true;
     }
 
+    public void UpdateSlot()
+    {
+        if (item != null)
+            equipMark.SetActive(item.equipped);
+        else
+            EmptySlot();
+    }
     public void EmptySlot()
     {
         icon.sprite = null;
         item = null;
         icon.gameObject.SetActive(false);
         button.interactable = false;
+        equipMark.SetActive(false);
+        
     }
 }

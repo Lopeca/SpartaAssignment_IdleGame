@@ -8,11 +8,13 @@ public class Item
 {
     public ItemData itemData;
     [SerializeField] List<Stat> stats;
+    public List<Stat> Stats => stats;
     
     [SerializeField] int upgradeCount;
     
     public int UpgradeCount => upgradeCount;
     public int Cost => (int)(itemData.Cost * (1 + (float)upgradeCount / 2));
+    public bool equipped;
 
     public void Init(ItemData itemData)
     {
@@ -29,6 +31,8 @@ public class Item
 
             stats.Add(tempStat);
         }
+
+        equipped = false;
     }
     public void Upgrade()
     {

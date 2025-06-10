@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         sideMainTabUI.UpdateGoldText(playerInventory.Gold);
         sideMainTabUI.UpdateLevelText(statHandler.CurrentLevel);
         sideMainTabUI.UpdateExp(statHandler.CurrentEXP, statHandler.MaxEXP);
-        sideMainTabUI.UpdateStatText(statHandler.ATK, statHandler.DEF);
+        sideMainTabUI.UpdateStatText(statHandler.TotalATK, statHandler.TotalDEF);
         
         
         _playerFSM.ChangeState(_playerFSM.playerMoveState);
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        float actualDamage = Mathf.Max(1, damage - statHandler.DEF);
+        float actualDamage = Mathf.Max(1, damage - statHandler.TotalDEF);
         statHandler.ChangeHP(-actualDamage);
 
         if (statHandler.CurrentHP <= 0)
