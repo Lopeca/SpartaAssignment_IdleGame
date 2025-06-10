@@ -19,4 +19,4 @@ MonoBehaviour:
   range: 6
   dealStartTime: 0.3
   gold: 30
-  exp: 15
+  exp: 50
