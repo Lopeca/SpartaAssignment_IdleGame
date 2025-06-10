@@ -11,6 +11,7 @@ public class MainTab : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI atkText;
     [SerializeField] private TextMeshProUGUI defText;
+    [SerializeField] private TextMeshProUGUI asText;
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private Slider expBar;
 
@@ -50,10 +51,11 @@ public class MainTab : MonoBehaviour
         expBar.value = (float)currentExp / totalExp;
     }
 
-    public void UpdateStatText(float currentAtk, float currentDef)
+    public void UpdateStatText(float currentAtk, float currentDef, float attackSpeed)
     {
-        atkText.text = $"{currentAtk}";
-        defText.text = $"{currentDef}";
+        atkText.text = $"{(int)currentAtk}";
+        defText.text = $"{(int)currentDef}";
+        asText.text = $"{attackSpeed:F2}";
     }
     
     public void OnClickCrystal()

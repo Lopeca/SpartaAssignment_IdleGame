@@ -67,6 +67,7 @@ public class BattleManager : MonoBehaviour
         CurrentWaveCount = 0;
         terrainLooper.InitializeTerrain();
         player.transform.position = playerInitPos;
+        player.enabled = true;
         player.Init();
         remainedEnemies = 0;
         enemySpawner.EmptyContainer();

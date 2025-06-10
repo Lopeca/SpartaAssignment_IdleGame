@@ -145,7 +145,7 @@ public class PlayerStatHandler : MonoBehaviour
     public void UpdateStatUI()
     {
         MainSceneUIManager.Instance?.battlePanel.UpdateHP(CurrentHP, TotalHP);
-        MainSceneUIManager.Instance?.sidePanel.mainTab.UpdateStatText(TotalATK, TotalDEF);
+        MainSceneUIManager.Instance?.sidePanel.mainTab.UpdateStatText(TotalATK, TotalDEF, TotalAttackSpeed);
     }
 
     private void ResetBonusStats()

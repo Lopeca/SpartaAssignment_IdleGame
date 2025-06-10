@@ -59,12 +59,14 @@ public class Player : MonoBehaviour
         IsDead = false;
         target = null;
 
+        Animator.Rebind();
+        Animator.Update(0f);
+        
         sideMainTabUI = MainSceneUIManager.Instance.sidePanel.mainTab;
         sideMainTabUI.UpdateGoldText(playerInventory.Gold);
         sideMainTabUI.UpdateLevelText(statHandler.CurrentLevel);
         sideMainTabUI.UpdateExp(statHandler.CurrentEXP, statHandler.MaxEXP);
-        sideMainTabUI.UpdateStatText(statHandler.TotalATK, statHandler.TotalDEF);
-        
+        sideMainTabUI.UpdateStatText(statHandler.TotalATK, statHandler.TotalDEF, statHandler.TotalAttackSpeed);
         
         _playerFSM.ChangeState(_playerFSM.playerMoveState);
     }

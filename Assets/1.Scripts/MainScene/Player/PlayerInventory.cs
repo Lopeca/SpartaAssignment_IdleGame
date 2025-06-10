@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-
+        // 빈칸이 없으면 들어가지 못함
         for (int i = 0; i < itemSlots.Length; i++)
         {
             Debug.Log($"i : {i} || {itemSlots[i].IsEmpty}");
