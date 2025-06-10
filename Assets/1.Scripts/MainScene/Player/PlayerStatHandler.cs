@@ -33,7 +33,7 @@ public class PlayerStatHandler : MonoBehaviour
     [field: SerializeField] public int CurrentEXP { get; private set; }
     public int MaxEXP => (int)(Mathf.Pow(CurrentLevel, 1.5f) * 50);
     
-    List<Buff> buffs = new List<Buff>();
+    Dictionary<string, Buff> buffs = new Dictionary<string, Buff>();
     private void Awake()
     {
         Init();
@@ -88,8 +88,9 @@ public class PlayerStatHandler : MonoBehaviour
 
     private void CalculateBuffStat()
     {
-        foreach (Buff buff in buffs)
+        foreach (KeyValuePair<string, Buff> buffDicElement in buffs)
         {
+            Buff buff = buffDicElement.Value;
             foreach (BuffProperty property in buff.Data.BuffOptions)
             {
                 switch (property.statType)
@@ -158,13 +159,14 @@ public class PlayerStatHandler : MonoBehaviour
 
     public void AppendBuff(Buff buff)
     {
-        buffs.Add(buff);
+        if(buffs.ContainsKey(buff.Data.Name)) buffs[buff.Data.Name].EndBuff();
+        buffs.Add(buff.Data.Name, buff);
         CalculateStat();
     }
 
     public void RemoveBuff(Buff buff)
     {
-        buffs.Remove(buff);
+        buffs.Remove(buff.Data.Name);
         CalculateStat();
     }
 }

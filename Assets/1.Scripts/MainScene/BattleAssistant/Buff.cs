@@ -21,8 +21,7 @@ public class Buff : MonoBehaviour
     {
         if (elapsedTime >= duration)
         {
-            RemoveBuff?.Invoke();
-            Destroy(this);
+            EndBuff();
         }
 
         elapsedTime += Time.deltaTime;
@@ -31,5 +30,11 @@ public class Buff : MonoBehaviour
     public float GetProgressPercent()
     {
         return elapsedTime / duration;
+    }
+
+    public void EndBuff()
+    {
+        RemoveBuff?.Invoke();
+        Destroy(this);
     }
 }

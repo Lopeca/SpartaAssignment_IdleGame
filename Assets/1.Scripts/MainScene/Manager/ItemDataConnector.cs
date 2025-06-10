@@ -30,7 +30,7 @@ public class ItemDataConnector : MonoBehaviour
     {
         ConsumableItem item = new ConsumableItem();
         
-        item.Init(consumableItems[Random.Range(0, equipItems.Count)]);
+        item.Init(consumableItems[Random.Range(0, consumableItems.Count)]);
         
         return item;
     }

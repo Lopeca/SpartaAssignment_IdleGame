@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Marine Shoes
   m_EditorClassIdentifier: 
   name: Marine Shoes
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: cc1211c5d06e8064598cc97432fe634d, type: 3}
+  cost: 100
   stats:
   - statType: 0
     value: 100
     upgradeValue: 30
-  cost: 100

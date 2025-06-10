@@ -39,7 +39,7 @@ public class ConsumableItem : Item
             sb.AppendLine(property.ToString());
         }
         sb.AppendLine();
-        sb.AppendLine($"Duration: {ConsumableItemData.Duration}");
+        sb.AppendLine($"Duration: {ConsumableItemData.Duration} s");
 
         return sb.ToString();
     }
