@@ -56,7 +56,7 @@ public class BattleManager : MonoBehaviour
             enemySpawner = FindObjectOfType<EnemySpawner>();
             if(!enemySpawner) Debug.LogError("No player found");
         }
-        
+        terrainLooper.CreateTerrain();
         playerInitPos = player.transform.position;
 
         InitBattle();

@@ -8,7 +8,7 @@ public class EnemyData : ScriptableObject
     [Header("Stats")]
     [SerializeField] private int hp = 100;
     [SerializeField] private int atk = 10;
-    [SerializeField] private int attackSpeed = 1;
+    [SerializeField] private float attackSpeed = 1;
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private float range = 10;
     [SerializeField] private float dealStartTime = 0.3f;
@@ -19,7 +19,7 @@ public class EnemyData : ScriptableObject
 
     public int HP => hp;
     public int ATK => atk;
-    public int AttackSpeed => attackSpeed;
+    public float AttackSpeed => attackSpeed;
     public float MoveSpeed => moveSpeed;
     public float Range => range;
     public float Deal_Start_Time => dealStartTime;

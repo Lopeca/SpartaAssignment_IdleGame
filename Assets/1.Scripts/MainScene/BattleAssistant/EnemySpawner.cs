@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] List<GameObject> enemies = new List<GameObject>();
     [SerializeField] private Vector3 spawnAreaSize;
     [SerializeField] GameObject enemyContainer;
 
@@ -27,7 +26,8 @@ public class EnemySpawner : MonoBehaviour
             Vector3 offset = new Vector3(intervalX * (i+1), 0, Random.Range(-spawnAreaSize.z /2, spawnAreaSize.z / 2));
             
             Vector3 spawnPos = transform.position - new Vector3(spawnAreaSize.x/2, 0, 0) + offset;
-            Enemy enemy = Instantiate(enemies.GetRandom(), spawnPos, Quaternion.Euler(0,180,0), enemyContainer.transform).GetComponent<Enemy>();
+            GameObject enemyPrefab = GameManager.Instance.CurrentStage.MonsterPrefabs.GetRandom();
+            Enemy enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.Euler(0,180,0), enemyContainer.transform).GetComponent<Enemy>();
             enemy.target = BattleManager.Instance.player;
         }
         BattleManager.Instance.remainedEnemies += count; 

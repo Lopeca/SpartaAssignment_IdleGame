@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb86677ad3c34914e9a8324f62f32bdb, type: 3}
+  m_Name: Stage2
+  m_EditorClassIdentifier: 
+  id: 2
+  monsterPrefabs:
+  - {fileID: 3497612054172579930, guid: b37eddf275cae0344883f5e46f46c474, type: 3}
+  - {fileID: 8278801829087998016, guid: f79eaaf19ae21834799600efcd922e61, type: 3}
+  tilingTerrainPrefabs:
+  - {fileID: 3802150157949894740, guid: 22c9bf8bf84709040a1ffe41223e6666, type: 3}
