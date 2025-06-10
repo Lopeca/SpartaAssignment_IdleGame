@@ -4630,7 +4630,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 120502855}
         m_TargetAssemblyTypeName: ItemInfoPanel, Assembly-CSharp
-        m_MethodName: OnClickDiscardButton
+        m_MethodName: OnClickSellButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

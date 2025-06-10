@@ -11,7 +11,7 @@ public class MainSceneUIManager : MonoBehaviour
 
     public BattlePanel battlePanel;
     public SidePanel sidePanel;
-    public ItemInfoPanel itemInfoPanel;
+    public EquipItemInfoPanel equipItemInfoPanel;
     
 
     private void Awake()
@@ -25,12 +25,20 @@ public class MainSceneUIManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        itemInfoPanel.gameObject.SetActive(false);
+        equipItemInfoPanel.gameObject.SetActive(false);
     }
 
     public void ShowItemInfo(ItemSlot itemSlot)
     {
-        itemInfoPanel.SetInfo(itemSlot);
-        itemInfoPanel.gameObject.SetActive(true);
+        if (itemSlot.Item is EquipItem)
+        {
+            equipItemInfoPanel.SetInfo(itemSlot);
+            equipItemInfoPanel.gameObject.SetActive(true);
+        }
+
+        if (itemSlot.Item is ConsumableItem)
+        {
+            
+        }
     }
 }

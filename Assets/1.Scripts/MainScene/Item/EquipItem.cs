@@ -4,25 +4,29 @@ using System.Text;
 using UnityEngine;
 
 [System.Serializable]
-public class Item
+public class EquipItem : Item
 {
-    public ItemData itemData;
+    public EquipItemScriptable EquipItemData => ItemData as EquipItemScriptable;
     [SerializeField] List<Stat> stats;
     public List<Stat> Stats => stats;
     
     [SerializeField] int upgradeCount;
     
     public int UpgradeCount => upgradeCount;
-    public int Cost => (int)(itemData.Cost * (1 + (float)upgradeCount / 2));
+    public int Cost => (int)(EquipItemData.Cost * (1 + (float)upgradeCount / 2));
     public bool equipped;
 
-    public void Init(ItemData itemData)
+    public void Init(EquipItemScriptable equipItemScriptable)
     {
-        this.itemData = itemData;
-        this.stats = new List<Stat>();
-        this.upgradeCount = 0;
+        // 역할 : 데이터로부터 변동될 속성(강화로 스탯 증가 등등) 카피
+        // 최적화에는 메모리 파편화 관점에서 애초에 스탯 클래스가 struct인 쪽이 좋겠다고 생각하지만 
+        // 나중에 강화 시 값복사 후 다뤄야하는 어색함도 있어서 일단 클래스로 진행했습니다 
+        
+        itemData = equipItemScriptable;
+        stats = new List<Stat>();
+        upgradeCount = 0;
 
-        foreach (Stat stat in itemData.Stats)
+        foreach (Stat stat in equipItemScriptable.Stats)
         {
             Stat tempStat = new Stat();
             tempStat.statType = stat.statType;
@@ -45,6 +49,7 @@ public class Item
 
     public string GetItemInfoString()
     {
+        // 아이템 슬롯 누르면 뜨는 창
         StringBuilder sb = new StringBuilder();
 
         foreach (Stat stat in stats)

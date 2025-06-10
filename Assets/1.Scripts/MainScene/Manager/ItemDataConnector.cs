@@ -6,19 +6,23 @@ public class ItemDataConnector : MonoBehaviour
 {
     public static ItemDataConnector Instance { get; private set; }
 
-    [SerializeField] List<ItemData> items = new List<ItemData>();
+    [Header("Equip Items")]
+    [SerializeField] List<EquipItemScriptable> equipItems = new List<EquipItemScriptable>();
+    
+    [Header("Equip Items")]
+    [SerializeField] List<ConsumableItemScriptable> consumableItems = new List<ConsumableItemScriptable>();
     void Awake()
     {
         if(!Instance) Instance = this;
         else Destroy(this);
     }
 
-    public Item GetRandomItem()
+    public EquipItem GetRandomEquipItem()
     {
-        Item item = new Item();
+        EquipItem equipItem = new EquipItem();
         
-        item.Init(items[Random.Range(0, items.Count)]);
+        equipItem.Init(equipItems[Random.Range(0, equipItems.Count)]);
         
-        return item;
+        return equipItem;
     }
 }

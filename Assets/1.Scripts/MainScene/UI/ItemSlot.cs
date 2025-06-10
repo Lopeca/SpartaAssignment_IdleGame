@@ -14,7 +14,7 @@ public class ItemSlot : MonoBehaviour
     
     public int Id => id;
     public Item Item => item;
-    public bool IsEmpty => item == null || !item.itemData;
+    public bool IsEmpty => item == null;
 
     private void Awake()
     {
@@ -33,18 +33,23 @@ public class ItemSlot : MonoBehaviour
         this.id = id;
     }
     
-    public void SetItem(Item _item)
+    public void SetItem(Item item)
     {
-        item = _item;
-        icon.sprite = _item.itemData.Icon;
+        this.item = item;
+        icon.sprite = item.ItemData.Icon;
         icon.gameObject.SetActive(true);
         button.interactable = true;
     }
 
     public void UpdateSlot()
     {
-        if (item != null)
-            equipMark.SetActive(item.equipped);
+        if (item == null)
+        {
+            EmptySlot();
+            return;
+        }
+        if (item is EquipItem equipItem)
+            equipMark.SetActive(equipItem.equipped);
         else
             EmptySlot();
     }

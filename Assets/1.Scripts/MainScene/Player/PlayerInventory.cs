@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        Debug.Log(item.GetItemInfoString());
+
         for (int i = 0; i < itemSlots.Length; i++)
         {
             Debug.Log($"i : {i} || {itemSlots[i].IsEmpty}");

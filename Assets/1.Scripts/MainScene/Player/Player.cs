@@ -107,9 +107,19 @@ public class Player : MonoBehaviour
         BattleManager.Instance.Restart();
     }
 
-    public void ObtainItem()
+    public void ObtainEquipItem()
     {
-        Item item = ItemDataConnector.Instance.GetRandomItem();
-        playerInventory.AddItem(item);
+        EquipItem equipItem = ItemDataConnector.Instance.GetRandomEquipItem();
+        playerInventory.AddItem(equipItem);
+    }
+    public void ObtainConsumableItem()
+    {
+        EquipItem equipItem = ItemDataConnector.Instance.GetRandomEquipItem();
+        playerInventory.AddItem(equipItem);
+    }
+
+    public void Recover(int value)
+    {
+        statHandler.ChangeHP(value);
     }
 }

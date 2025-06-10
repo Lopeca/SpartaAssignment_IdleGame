@@ -18,9 +18,13 @@ public class DebugEditorWindow : EditorWindow
             InitBattle();
         }
         
-        if (GUILayout.Button("아이템 랜덤 획득"))
+        if (GUILayout.Button("장비 아이템 랜덤 획득"))
         {
-            AddRandomItem();
+            AddRandomEquipItem();
+        }
+        if (GUILayout.Button("소비 아이템 랜덤 획득"))
+        {
+            AddRandomConsumableItem();
         }
     }
 
@@ -29,8 +33,12 @@ public class DebugEditorWindow : EditorWindow
         BattleManager.Instance.InitBattle();
     }
 
-    void AddRandomItem()
+    void AddRandomEquipItem()
     {
-        BattleManager.Instance.player.ObtainItem();
+        BattleManager.Instance.player.ObtainEquipItem();
+    }
+    void AddRandomConsumableItem()
+    {
+        BattleManager.Instance.player.ObtainConsumableItem();
     }
 }

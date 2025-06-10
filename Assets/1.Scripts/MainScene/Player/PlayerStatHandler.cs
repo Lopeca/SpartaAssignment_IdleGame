@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerStatHandler : MonoBehaviour
 {
+    // [필드 부피 개선방안]
+    // base, bonus 한 세트로 클래스화
+    // 스탯 타입으로 딕셔너리나, 인스펙터에서 보려면 리스트
     [field: SerializeField] public float BaseHP { get; private set; } = 100;
     [field: SerializeField] public float BonusHP { get; private set; } = 0;
     
@@ -78,12 +81,12 @@ public class PlayerStatHandler : MonoBehaviour
         
         foreach (ItemSlot slot in BattleManager.Instance.player.playerInventory.itemSlots)
         {
-            Item item = slot.Item;
+            EquipItem equipItem = slot.Item as EquipItem;
 
-            if (item == null) continue;
-            if (!item.equipped) continue;
+            if (equipItem == null) continue;
+            if (!equipItem.equipped) continue;
 
-            foreach (Stat stat in item.Stats)
+            foreach (Stat stat in equipItem.Stats)
             {
                 switch (stat.statType)
                 {
