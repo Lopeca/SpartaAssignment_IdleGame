@@ -1,32 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public struct BuffProperty
-{
-    public StatType statType;
-    public float value;
-}
 public class Buff : MonoBehaviour
 {
-    List<BuffProperty> properties = new List<BuffProperty>();
+    private ConsumableItemScriptable data;
+    public ConsumableItemScriptable Data => data;
     float duration;
     private float elapsedTime;
+    private Action RemoveBuff;
 
-    public void Init(StatType _statType, float _duration)
+    public void Init(ConsumableItemScriptable data, Action RemoveBuff)
     {
-        statType = _statType;
-        duration = _duration;
+        this.data = data;
+        duration = data.Duration;
         elapsedTime = 0;
+        this.RemoveBuff += RemoveBuff;
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (elapsedTime >= duration)
         {
-            
+            RemoveBuff?.Invoke();
             Destroy(this);
         }
+
         elapsedTime += Time.deltaTime;
+    }
+
+    public float GetProgressPercent()
+    {
+        return elapsedTime / duration;
     }
 }

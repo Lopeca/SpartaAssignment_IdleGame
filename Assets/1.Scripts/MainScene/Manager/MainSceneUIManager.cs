@@ -12,6 +12,7 @@ public class MainSceneUIManager : MonoBehaviour
     public BattlePanel battlePanel;
     public SidePanel sidePanel;
     public EquipItemInfoPanel equipItemInfoPanel;
+    public ConsumeItemInfoPanel consumeItemInfoPanel;
     
 
     private void Awake()
@@ -26,6 +27,7 @@ public class MainSceneUIManager : MonoBehaviour
         }
         
         equipItemInfoPanel.gameObject.SetActive(false);
+        consumeItemInfoPanel.gameObject.SetActive(false);
     }
 
     public void ShowItemInfo(ItemSlot itemSlot)
@@ -38,7 +40,8 @@ public class MainSceneUIManager : MonoBehaviour
 
         if (itemSlot.Item is ConsumableItem)
         {
-            
+            consumeItemInfoPanel.SetInfo(itemSlot);
+            consumeItemInfoPanel.gameObject.SetActive(true);
         }
     }
 }

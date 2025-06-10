@@ -47,7 +47,7 @@ public class EquipItem : Item
         upgradeCount++;
     }
 
-    public string GetItemInfoString()
+    public override string GetItemInfoString()
     {
         // 아이템 슬롯 누르면 뜨는 창
         StringBuilder sb = new StringBuilder();

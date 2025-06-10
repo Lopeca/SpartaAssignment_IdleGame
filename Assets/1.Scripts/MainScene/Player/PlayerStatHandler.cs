@@ -33,6 +33,7 @@ public class PlayerStatHandler : MonoBehaviour
     [field: SerializeField] public int CurrentEXP { get; private set; }
     public int MaxEXP => (int)(Mathf.Pow(CurrentLevel, 1.5f) * 50);
     
+    List<Buff> buffs = new List<Buff>();
     private void Awake()
     {
         Init();
@@ -75,10 +76,44 @@ public class PlayerStatHandler : MonoBehaviour
 
     }
 
-    public void CalculateItemStat()
+    public void CalculateStat()
     {
         ResetBonusStats();
+
+        CalculateItemBonusStat();
+        CalculateBuffStat();
         
+        UpdateStatUI();
+    }
+
+    private void CalculateBuffStat()
+    {
+        foreach (Buff buff in buffs)
+        {
+            foreach (BuffProperty property in buff.Data.BuffOptions)
+            {
+                switch (property.statType)
+                {
+                    case StatType.ATK:
+                        BonusATK += property.value;
+                        break;
+                    case StatType.DEF:
+                        BonusDEF += property.value;
+                        break;
+                    case StatType.HP:
+                        BonusHP += property.value;
+                        break;
+                    case StatType.AS:
+                        BonusAttackSpeed += property.value;
+                        break;
+                }
+            }
+        }
+    }
+
+    private void CalculateItemBonusStat()
+    {
+        // 장착중인 아이템을 리스트로 따로 안 빼고 슬롯 보고 돌고 있습니다
         foreach (ItemSlot slot in BattleManager.Instance.player.playerInventory.itemSlots)
         {
             EquipItem equipItem = slot.Item as EquipItem;
@@ -105,8 +140,6 @@ public class PlayerStatHandler : MonoBehaviour
                 }
             }
         }
-        
-        UpdateStatUI();
     }
 
     public void UpdateStatUI()
@@ -121,5 +154,17 @@ public class PlayerStatHandler : MonoBehaviour
         BonusDEF = 0;
         BonusHP = 0;
         BonusAttackSpeed = 0;
+    }
+
+    public void AppendBuff(Buff buff)
+    {
+        buffs.Add(buff);
+        CalculateStat();
+    }
+
+    public void RemoveBuff(Buff buff)
+    {
+        buffs.Remove(buff);
+        CalculateStat();
     }
 }

@@ -8,6 +8,20 @@ public enum ConsumeType
     Buff
 }
 
+[System.Serializable]
+public struct BuffProperty
+{
+    public StatType statType;
+    public float value;
+
+    public override string ToString()
+    {
+        return statType + " +" + value;
+    }
+}
+
+[CreateAssetMenu(fileName = "Consumable Item Data", menuName = "Scriptable/Consumable Item")]
+
 public class ConsumableItemScriptable : ItemScriptableBase
 {
     [SerializeField] ConsumeType consumeType;
@@ -17,10 +31,8 @@ public class ConsumableItemScriptable : ItemScriptableBase
     public int Value => value;
     
     [Header("Buff Properties")]
-    [SerializeField] StatType statType;
-    public StatType StatType => statType;
+    [SerializeField] List<BuffProperty> buffOptions;
+    public List<BuffProperty> BuffOptions => buffOptions;
     [SerializeField] private float duration;
     public float Duration => duration;
 }
-
-

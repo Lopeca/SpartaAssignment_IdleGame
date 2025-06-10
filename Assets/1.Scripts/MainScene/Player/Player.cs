@@ -114,8 +114,9 @@ public class Player : MonoBehaviour
     }
     public void ObtainConsumableItem()
     {
-        EquipItem equipItem = ItemDataConnector.Instance.GetRandomEquipItem();
-        playerInventory.AddItem(equipItem);
+        ConsumableItem item = ItemDataConnector.Instance.GetRandomConsumableItem();
+        Debug.Log(item.ConsumableItemData.Name);
+        playerInventory.AddItem(item);
     }
 
     public void Recover(int value)

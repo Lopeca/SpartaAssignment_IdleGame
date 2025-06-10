@@ -7,4 +7,5 @@ public abstract class Item
 {
     [SerializeField] protected ItemScriptableBase itemData;
     public ItemScriptableBase ItemData => itemData;
+    public abstract string GetItemInfoString();
 }

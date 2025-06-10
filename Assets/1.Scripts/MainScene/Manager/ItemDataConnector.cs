@@ -25,4 +25,13 @@ public class ItemDataConnector : MonoBehaviour
         
         return equipItem;
     }
+    
+    public ConsumableItem GetRandomConsumableItem()
+    {
+        ConsumableItem item = new ConsumableItem();
+        
+        item.Init(consumableItems[Random.Range(0, equipItems.Count)]);
+        
+        return item;
+    }
 }

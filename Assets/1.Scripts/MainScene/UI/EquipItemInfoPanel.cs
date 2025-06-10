@@ -41,14 +41,14 @@ public class EquipItemInfoPanel : MonoBehaviour
         
         BattleManager.Instance.player.GainGold(-equipItem.Cost);
         equipItem.Upgrade();
-        BattleManager.Instance.player.statHandler.CalculateItemStat();
+        BattleManager.Instance.player.statHandler.CalculateStat();
         UpdateInfo();
     }
     public void OnClickEquipButton()
     {
         equipItem.equipped = !equipItem.equipped;
         itemSlot.UpdateSlot();
-        BattleManager.Instance.player.statHandler.CalculateItemStat();
+        BattleManager.Instance.player.statHandler.CalculateStat();
         UpdateInfo();
         
     }
