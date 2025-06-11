@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainSceneUIManager : MonoBehaviour
@@ -44,5 +45,12 @@ public class MainSceneUIManager : MonoBehaviour
             consumeItemInfoPanel.SetInfo(itemSlot);
             consumeItemInfoPanel.gameObject.SetActive(true);
         }
+    }
+    
+    // 특수 버튼 기능 임시로 매니저에게 역할 맡김
+    public void OnClickGotoStageBtn()
+    {
+        GameManager.Instance.playerDataManager.Save(BattleManager.Instance.player);
+        SceneManager.LoadScene("StageSelectScene");
     }
 }

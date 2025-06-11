@@ -26,11 +26,6 @@ public class Player : MonoBehaviour
         CheckComponents();
     }
 
-    private void Start()
-    {
-        Init();
-    }
-
     private void CheckComponents()
     {
         if(!CharacterController)
@@ -54,6 +49,12 @@ public class Player : MonoBehaviour
 
     public void Init()
     {
+        if (GameManager.Instance.playerDataManager)
+        {
+            playerInventory.LoadFromDataManager();
+            statHandler.LoadFromDataManager();
+        }
+        statHandler.CalculateStat();
         statHandler.Init();
         
         IsDead = false;

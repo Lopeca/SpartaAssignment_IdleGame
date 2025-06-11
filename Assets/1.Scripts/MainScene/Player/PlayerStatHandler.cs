@@ -34,10 +34,6 @@ public class PlayerStatHandler : MonoBehaviour
     public int MaxEXP => (int)(Mathf.Pow(CurrentLevel, 1.5f) * 50);
     
     Dictionary<string, Buff> buffs = new Dictionary<string, Buff>();
-    private void Awake()
-    {
-        Init();
-    }
 
     public void Init()
     {
@@ -170,5 +166,16 @@ public class PlayerStatHandler : MonoBehaviour
         buffs.Remove(buff.Data.Name);
         MainSceneUIManager.Instance.buffProgressContainer.RemoveBuff(buff);
         CalculateStat();
+    }
+
+    public void LoadFromDataManager()
+    {
+        PlayerDataManager playerData = GameManager.Instance.playerDataManager;
+        
+        BaseHP = playerData.baseHp;
+        BaseATK = playerData.baseATK;
+        BaseDEF = playerData.baseDEF;
+        CurrentEXP = playerData.exp;
+        CurrentLevel = playerData.level;
     }
 }

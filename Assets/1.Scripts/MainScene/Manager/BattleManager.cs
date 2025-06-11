@@ -59,6 +59,11 @@ public class BattleManager : MonoBehaviour
         terrainLooper.CreateTerrain();
         playerInitPos = player.transform.position;
 
+        
+    }
+
+    private void Start()
+    {
         InitBattle();
     }
 

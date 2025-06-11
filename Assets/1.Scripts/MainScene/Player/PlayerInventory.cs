@@ -44,4 +44,15 @@ public class PlayerInventory : MonoBehaviour
         slot.EmptySlot();
         BattleManager.Instance.player.statHandler.CalculateStat();
     }
+
+    public void LoadFromDataManager()
+    {
+        PlayerDataManager playerData = GameManager.Instance.playerDataManager;
+        foreach (Item item in playerData.items)
+        {
+            if(item != null) AddItem(item);
+        }
+        
+        _gold = playerData.gold;
+    }
 }

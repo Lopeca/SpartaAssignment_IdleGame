@@ -20,7 +20,7 @@ public class MainTab : MonoBehaviour
 
     public const int MaxSlotCount = 15;
     
-    private void Start()
+    private void OnEnable()
     {
         foreach (Transform child in itemSlotContainer.transform)
         {

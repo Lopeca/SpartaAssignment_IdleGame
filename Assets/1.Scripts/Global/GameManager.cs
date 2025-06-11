@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public PlayerDataManager playerDataManager;
+    
     [SerializeField] List<StageData> stages = new List<StageData>();
     
     public const int AllStageCount = 2;
@@ -36,6 +38,14 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        if (!playerDataManager)
+        {
+            GameObject playerDataManagerObj = new GameObject("PlayerDataManager");
+            playerDataManager = playerDataManagerObj.AddComponent<PlayerDataManager>();
+            playerDataManagerObj.transform.SetParent(transform);
+            
         }
     }
 

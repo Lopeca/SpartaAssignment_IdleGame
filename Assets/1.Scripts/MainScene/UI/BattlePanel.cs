@@ -46,5 +46,6 @@ public class BattlePanel : MonoBehaviour
     private void OnDestroy()
     {
         battleFadeSquare.DOKill();
+        hpBar.DOKill();
     }
 }
