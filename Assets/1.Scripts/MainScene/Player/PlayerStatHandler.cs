@@ -162,11 +162,13 @@ public class PlayerStatHandler : MonoBehaviour
         if(buffs.ContainsKey(buff.Data.Name)) buffs[buff.Data.Name].EndBuff();
         buffs.Add(buff.Data.Name, buff);
         CalculateStat();
+        MainSceneUIManager.Instance.buffProgressContainer.AddBuff(buff);
     }
 
     public void RemoveBuff(Buff buff)
     {
         buffs.Remove(buff.Data.Name);
+        MainSceneUIManager.Instance.buffProgressContainer.RemoveBuff(buff);
         CalculateStat();
     }
 }

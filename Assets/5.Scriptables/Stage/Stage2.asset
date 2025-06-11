@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 8278801829087998016, guid: f79eaaf19ae21834799600efcd922e61, type: 3}
   tilingTerrainPrefabs:
   - {fileID: 3802150157949894740, guid: 22c9bf8bf84709040a1ffe41223e6666, type: 3}
+  - {fileID: 3802150157949894740, guid: 2976f9e64e10f6e4ca5a1bed1f797c5c, type: 3}

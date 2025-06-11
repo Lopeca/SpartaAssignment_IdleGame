@@ -13,7 +13,8 @@ public class MainSceneUIManager : MonoBehaviour
     public SidePanel sidePanel;
     public EquipItemInfoPanel equipItemInfoPanel;
     public ConsumeItemInfoPanel consumeItemInfoPanel;
-    
+
+    public BuffProgressContainer buffProgressContainer;
 
     private void Awake()
     {
